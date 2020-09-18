@@ -1,8 +1,8 @@
 import React from "react";
-import TodoApp from "./TodoApp";
+import SimpleApp from "./components/SimpleApp";
 
 function App() {
-  return <TodoApp />;
+  return <SimpleApp />;
 }
 
 export default App;
