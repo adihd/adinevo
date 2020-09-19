@@ -7,10 +7,12 @@
     "@material-ui/core": "^3.9.4",
     "@material-ui/icons": "^3.0.2",
     "babel-runtime": "^6.26.0",
+    "cross-env": "^7.0.2",
     "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "socket.io-client": "^2.3.0",
+    "tree-kill": "^1.2.2",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
@@ -25,9 +27,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "electron build": "electron-builder",
     "dep-win": "npm run build && electron-builder --win",
     "dep-mac": "npm run build && electron-builder --mac",
-    "electron-dev": "concurrently \"BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron-dev": "concurrently \"set BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,8 +46,17 @@
     "appId": "com.nevo.netafim-rc",
     "files": [
       "build/**/*",
-      "public/test.exe",
+      "build/test.exe",
       "node_modules/**/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "public",
+        "to": "",
+        "filter": [
+          "pi-server.exe"
+        ]
+      }
     ],
     "directories": {
       "buildResources": "assets"

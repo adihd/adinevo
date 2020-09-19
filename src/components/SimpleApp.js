@@ -16,7 +16,6 @@ function SimpleApp() {
     initialTodos
   );
   var socket;
-  var message = '';
   useEffect(() => {
     window.localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -25,10 +24,8 @@ function SimpleApp() {
   socket.on('list', (list) => {
     console.log(list)
     alert(list['controllers']);
-    message = list;
   });
   const clickHandler = () => {
-    console.log('=========== in handler')
     socket.emit('getlist', { message: 'zivi' });
   }
   return (
@@ -56,7 +53,6 @@ function SimpleApp() {
           /> */}
           <FirstButton></FirstButton>
           <button onClick={clickHandler} >test socket</button>
-          {message}
         </Grid>
       </Grid>
     </Paper>

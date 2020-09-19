@@ -1,5 +1,6 @@
-const exec = require('child_process').exec;
+const execFile = require('child_process').execFile;
 const path = require("path");
+var killtree = require('tree-kill');
 
 const electron = require("electron");
 const app = electron.app;
@@ -9,35 +10,26 @@ const BrowserWindow = electron.BrowserWindow;
 const url = require("url");
 const isDev = require("electron-is-dev");
 
-console.log('==============')
 let mainWindow
 let child
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 900, height: 680 });
+ 
   mainWindow.loadURL(
-      url.format({
-        pathname: path.join(__dirname, `../build/index.html`),
-        protocol: "file:",
-        slashes: true
-      })
-  );
-  // mainWindow.loadURL(
-  //   isDev
-  //     ? "http://localhost:3000"
-  //     :  url.format({
-  //         pathname: path.join(__dirname, `/public/index.html`),
-  //         protocol: "file:",
-  //         slashes: true
-  //       })
-  // );
-  mainWindow.on("closed", () => (mainWindow = null));
+    isDev
+    ? "http://localhost:3000"
+    : `file://${path.join(__dirname, "../build/index.html")}`
+    );
+  mainWindow.on("closed", () => {
+   mainWindow = null;
+  });
 }
 
 app.on("ready", createWindow);
 
-app.on("window-all-closed", () => {
-    child.kill()
+app.on("window-all-closed", async () => {
+    killtree(child.pid, 'SIGKILL');
     app.quit()
 });
 
@@ -47,6 +39,6 @@ app.on("activate", () => {
   }
 });
 
-
-child = exec(path.join(__dirname, `../build/test.exe`));
-
+child = execFile( path.join(__dirname, 'pi-server.exe'), (data, err) => {
+  console.log(err);
+});
