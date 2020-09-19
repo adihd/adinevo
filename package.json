@@ -54,7 +54,7 @@
         "from": "public",
         "to": "",
         "filter": [
-          "pi-server.exe"
+          "py-server.exe"
         ]
       }
     ],

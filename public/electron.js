@@ -39,6 +39,6 @@ app.on("activate", () => {
   }
 });
 
-child = execFile( path.join(__dirname, 'pi-server.exe'), (data, err) => {
+child = execFile( path.join(__dirname, 'py-server.exe'), (data, err) => {
   console.log(err);
 });
