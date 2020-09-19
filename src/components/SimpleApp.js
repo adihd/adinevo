@@ -8,17 +8,29 @@ import Grid from "@material-ui/core/Grid";
 import useTodoState from "../hooks/useTodoState";
 
 import FirstButton from "./FirstButton";
+import * as io from 'socket.io-client';
 
 function SimpleApp() {
   const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
     initialTodos
   );
-
+  var socket;
+  var message = '';
   useEffect(() => {
     window.localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  socket = io('http://localhost:5000');
+  socket.on('list', (list) => {
+    console.log(list)
+    alert(list['controllers']);
+    message = list;
+  });
+  const clickHandler = () => {
+    console.log('=========== in handler')
+    socket.emit('getlist', { message: 'zivi' });
+  }
   return (
     <Paper
       style={{
@@ -43,6 +55,8 @@ function SimpleApp() {
             editTodo={editTodo}
           /> */}
           <FirstButton></FirstButton>
+          <button onClick={clickHandler} >test socket</button>
+          {message}
         </Grid>
       </Grid>
     </Paper>

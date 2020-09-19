@@ -1,26 +1,33 @@
 {
   "name": "adi-nevo-ziv",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.4",
     "@material-ui/icons": "^3.0.2",
-    "concurrently": "^5.3.0",
-    "electron": "^6.1.12",
-    "electron-builder": "^22.8.1",
+    "babel-runtime": "^6.26.0",
     "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "2.1.8",
-    "uuid": "^3.4.0",
-    "wait-on": "^5.2.0"
+    "socket.io-client": "^2.3.0",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "electron": "6.1.12",
+    "electron-builder": "^22.8.1",
+    "wait-on": "^5.2.0",
+    "concurrently": "^5.3.0",
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"SET BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\""
+    "dep-win": "npm run build && electron-builder --win",
+    "dep-mac": "npm run build && electron-builder --mac",
+    "electron-dev": "concurrently \"BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,5 +38,16 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "main": "public/electron.js"
+  "main": "public/electron.js",
+  "build": {
+    "appId": "com.nevo.netafim-rc",
+    "files": [
+      "build/**/*",
+      "public/test.exe",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  }
 }
