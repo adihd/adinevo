@@ -16,21 +16,20 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "electron": "6.1.12",
-    "electron-builder": "^22.8.1",
-    "wait-on": "^5.2.0",
     "concurrently": "^5.3.0",
-    "react-scripts": "2.1.8"
+    "electron": "^10.1.2",
+    "electron-builder": "^22.8.1",
+    "react-scripts": "2.1.8",
+    "wait-on": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "electron build": "electron-builder",
     "dep-win": "npm run build && electron-builder --win",
     "dep-mac": "npm run build && electron-builder --mac",
-    "electron-dev": "concurrently \"set BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\""
+    "el-dev": "concurrently \"set BROWSER=none&&npm start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,7 +45,6 @@
     "appId": "com.nevo.netafim-rc",
     "files": [
       "build/**/*",
-      "build/test.exe",
       "node_modules/**/*"
     ],
     "extraFiles": [

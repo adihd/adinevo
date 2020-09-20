@@ -25,9 +25,18 @@ function SimpleApp() {
     console.log(list)
     alert(list['controllers']);
   });
+  
   const clickHandler = () => {
     socket.emit('getlist', { message: 'zivi' });
   }
+
+    const clickExitHandler = () => {
+        socket.emit('exit');
+    }
+
+    const clickListPortsHandler = () => {
+        socket.emit('list_of_ports');
+    }
   return (
     <Paper
       style={{
@@ -53,6 +62,8 @@ function SimpleApp() {
           /> */}
           <FirstButton></FirstButton>
           <button onClick={clickHandler} >test socket</button>
+            <button onClick={clickExitHandler} >Exit</button>
+            <button onClick={clickListPortsHandler} >List Ports</button>
         </Grid>
       </Grid>
     </Paper>
