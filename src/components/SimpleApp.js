@@ -27,11 +27,11 @@ function SimpleApp() {
   });
   
   const clickHandler = () => {
-    socket.emit('getlist', { message: 'zivi' });
+    socket.emit('getlist', { message: 'the test worked :)' });
   }
 
     const clickExitHandler = () => {
-        socket.emit('exit');
+      socket.emit('exit');
     }
 
     const clickListPortsHandler = () => {
