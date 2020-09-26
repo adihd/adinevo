@@ -1,52 +1,19 @@
 import React from "react";
-import { Formik, useFormik } from "formik";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
-const options1 = ["Option 1", "Option 2"];
+import Auto from "../components/Auto";
+const optionsCommand = ["optionsCommand 1", "optionsCommand 2"];
+const optionsController = ["optionsController 1", "optionsCommand 2"];
+const optionsCom = ["optionsCom 1", "optionsCom 2"];
 
 const UpdateProgram = () => {
-  const formik = useFormik({
-    initialValues: {
-      command: "",
-      controller: "",
-      com: "",
-    },
-    onSubmit: (values) => {
-      console.log("Form data", values);
-    },
-  });
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="name">Choose or enter command</label>
-        <input
-          type="text"
-          id="command"
-          name="command"
-          onChange={formik.handleChange}
-          value={formik.values.command}
-        />
-
-        <label htmlFor="name">Choose or enter controller </label>
-        <input
-          type="text"
-          id="controller"
-          name="controller"
-          onChange={formik.handleChange}
-          value={formik.values.controller}
-        />
-
-        <label htmlFor="name">Choose or enter COM port </label>
-        <input
-          type="text"
-          id="com"
-          name="com"
-          onChange={formik.handleChange}
-          value={formik.values.com}
-        />
-
-        <button type="submit">Submit</button>
+      <form action="">
+        <br />
+        <Auto options={optionsCommand} lable="command" id="command" />
+        <br />
+        <Auto options={optionsController} lable="controller" id="controller" />
+        <br />
+        <Auto options={optionsCom} lable="com" id="Com" />
       </form>
     </div>
   );
