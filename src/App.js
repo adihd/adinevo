@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import Home from "./pages/Home";
 import UpdateProgram from "./pages/UpdateProgram";
+import LoginPage from "./pages/LoginPage";
 import UserManagement from "./pages/UserManagement";
 import MyProfile from "./pages/MyProfile";
 
@@ -36,6 +37,11 @@ export default function App() {
           exact
           path="/MyProfile"
           render={(props) => <MyProfile {...props} />}
+        />
+        <Route
+          exact
+          path="/LoginPage"
+          render={(props) => <LoginPage {...props} />}
         />
       </Switch>
     </div>

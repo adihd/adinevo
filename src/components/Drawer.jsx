@@ -41,7 +41,13 @@ const Drawer = (props) => {
       icon: <MailIcon />,
       onClick: () => history.push("/MyProfile"),
     },
+    {
+      text: "LoginPage",
+      icon: <MailIcon />,
+      onClick: () => history.push("/LoginPage"),
+    },
   ];
+
   return (
     <MUIDrawer variant="permanent" className={classes.drawer}>
       <List>
