@@ -111,6 +111,7 @@ export default function LoginPage() {
             label="Remember me"
           /> */}
           <Button
+            onClick={clickLogin}
             type="submit"
             fullWidth
             variant="contained"
