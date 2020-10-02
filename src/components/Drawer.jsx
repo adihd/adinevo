@@ -42,9 +42,9 @@ const Drawer = (props) => {
       onClick: () => history.push("/MyProfile"),
     },
     {
-      text: "LoginPage",
+      text: "SignInPage",
       icon: <MailIcon />,
-      onClick: () => history.push("/LoginPage"),
+      onClick: () => history.push("/SignInPage"),
     },
   ];
 

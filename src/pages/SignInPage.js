@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import * as io from "socket.io-client";
-
+import { useHistory } from "react-router-dom";
 var socket;
 socket = io("http://localhost:5000");
 
@@ -26,10 +26,17 @@ socket.on("login_response", (reply) => {
   }
 });
 
-const clickLogin = () => {
-  socket.emit("login_attempt", { username: "user_0", password: "7670" });
-};
+// async function handleSubmit(event) {
+//   event.preventDefault();
 
+//   try {
+//     await Auth.signIn(email, password);
+//     userHasAuthenticated(true);
+//     history.push("/");
+//   } catch (e) {
+//     alert(e.message);
+//   }
+// }
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -51,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LoginPage() {
+  const history = useHistory();
   const classes = useStyles();
   const [state, setState] = useState({ username: "", password: "" });
 
@@ -65,9 +73,12 @@ export default function LoginPage() {
   };
 
   const onSubmitFunc = (e) => {
+    // e.preventDefault();
+    // const { username, password } = state;
+    // socket.emit("login", { username, password });
     e.preventDefault();
-    const { username, password } = state;
-    socket.emit("login", { username, password });
+    console.log("adi");
+    history.push("/");
   };
 
   return (
@@ -78,7 +89,7 @@ export default function LoginPage() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Log in
         </Typography>
         <form onSubmit={onSubmitFunc} className={classes.form} noValidate>
           <TextField
@@ -112,7 +123,6 @@ export default function LoginPage() {
             label="Remember me"
           /> */}
           <Button
-            onClick={clickLogin}
             type="submit"
             fullWidth
             variant="contained"

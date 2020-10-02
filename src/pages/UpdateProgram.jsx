@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-
+import NavBar from "../components/NavBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -29,34 +29,44 @@ const useStyles = makeStyles((theme) => ({
 const UpdateProgram = () => {
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          name of page
-        </Typography>
-        <form className={classes.form} noValidate>
-          <br />
-          <Auto options={optionsCommand} lable="command" id="command" />
-          <br />
-          <Auto
-            options={optionsController}
-            lable="controller"
-            id="controller"
-          />
-          <br />
-          <Auto options={optionsCom} lable="com" id="Com" />
-          <br />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            className={classes.submit}>
-            submit
-          </Button>
-        </form>
-      </div>
-    </Container>
+    <div>
+      <NavBar />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            UpdateProgram
+          </Typography>
+          <form className={classes.form} noValidate>
+            <br />
+            <Auto
+              options={optionsCommand}
+              lable="command"
+              id="command"
+              fullWidth
+            />
+            <br />
+            <Auto
+              options={optionsController}
+              lable="controller"
+              id="controller"
+              fullWidth
+            />
+            <br />
+            <Auto options={optionsCom} lable="com" id="Com" fullWidth />
+            <br />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              className={classes.submit}>
+              submit
+            </Button>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 };
 

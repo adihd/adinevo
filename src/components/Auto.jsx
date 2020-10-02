@@ -9,6 +9,7 @@ export default function Auto(props) {
     <div>
       <Autocomplete
         value={value}
+        fullWidth
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
@@ -18,7 +19,6 @@ export default function Auto(props) {
         }}
         id={props.id}
         options={props.options}
-        style={{ width: 300 }}
         renderInput={(params) => (
           <TextField {...params} label={props.lable} variant="outlined" />
         )}
