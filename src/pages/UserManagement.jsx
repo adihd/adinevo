@@ -11,13 +11,12 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
-
-import Button from "@material-ui/core/Button";
 import NewUser from "./NewUser";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import Button from "@material-ui/core/Button";
 
 const optionsCommand = ["optionsCommand 1", "optionsCommand 2"];
 const optionsController = ["optionsController 1", "optionsCommand 2"];
