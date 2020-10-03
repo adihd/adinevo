@@ -5,11 +5,13 @@ import * as io from "socket.io-client";
 var socket;
 socket = io("http://localhost:5000");
 
+// listening to the server
 socket.on("list", (list) => {
   console.log(list);
   alert(list["controllers"]);
 });
 
+// calling the server
 const clickHandler = () => {
   socket.emit("getlist", { message: "the test worked :)" });
 };

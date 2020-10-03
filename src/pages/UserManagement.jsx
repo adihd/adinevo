@@ -15,6 +15,7 @@ import NewUser from "./NewUser";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Theme from "../Theme";
 
 import Button from "@material-ui/core/Button";
 
@@ -30,8 +31,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 }));
+
 const StyledDiv = styled.div`
   width: 100%;
+`;
+const StyledAppBar = styled(AppBar)`
+  color: ${(p) => p.theme.colors.lightBlue};
+  /* background-color: ${(p) => p.theme.colors.netBlue}; */
 `;
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,13 +57,11 @@ function TabPanel(props) {
     </div>
   );
 }
-
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
-
 function a11yProps(index) {
   return {
     id: `wrapped-tab-${index}`,
@@ -73,13 +77,13 @@ const UserManagement = () => {
     setValue(newValue);
   };
   return (
-    <div>
+    <Theme>
       <NavBar />
       <StyledDiv>
         {/* <Typography component="h1" variant="h5">
         UserManagement
       </Typography> */}
-        <AppBar position="static">
+        <StyledAppBar position="static">
           <Tabs
             value={value}
             onChange={handleChange}
@@ -93,7 +97,7 @@ const UserManagement = () => {
             <Tab value="two" label="Edit user" {...a11yProps("two")} />
             <Tab value="three" label="Delete user" {...a11yProps("three")} />
           </Tabs>
-        </AppBar>
+        </StyledAppBar>
         <TabPanel value={value} index="one">
           <Typography component="h1" variant="h5"></Typography>
           <NewUser />
@@ -105,7 +109,7 @@ const UserManagement = () => {
           <DeleteUser />
         </TabPanel>
       </StyledDiv>
-    </div>
+    </Theme>
   );
 };
 

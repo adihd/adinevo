@@ -37,6 +37,22 @@ socket.on("login_response", (reply) => {
 //     alert(e.message);
 //   }
 // }
+// import * as io from "socket.io-client";
+// var socket;
+// socket = io("http://localhost:5000");
+
+// socket.on("login_response", (reply) => {
+//   // from json to js (???):
+//   if (reply.success) {
+//     alert("adi is the best and the usr is loged in!");
+//   } else {
+//     console.log(reply.msg);
+//   }
+// });
+
+// const clickLogin = () => {
+//   socket.emit("login_attempt", { username: "user_0", password: "7670" });
+// };
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),

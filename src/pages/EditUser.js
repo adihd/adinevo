@@ -13,6 +13,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Auto from "../components/Auto";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,9 +42,14 @@ const optionsController = ["optionsController 1", "optionsCommand 2"];
 export default function EditUser() {
   const classes = useStyles();
   const [state, setState] = useState({ username: "", password: "" });
+  const [age, setAge] = React.useState("");
 
   const onInputChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
   };
 
   return (
@@ -81,14 +91,25 @@ export default function EditUser() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
+                <FormControl
                   fullWidth
-                  id="email"
-                  label="Confirm Authorization code (optional)"
-                  name="email"
-                  autoComplete="email"
-                />
+                  variant="outlined"
+                  className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-outlined-label">
+                    user authorization
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="demo-simple-select-outlined"
+                    value={age}
+                    onChange={handleChange}
+                    label="user
+                    authorization">
+                    <MenuItem value={1}>simple user</MenuItem>
+                    <MenuItem value={2}>developer</MenuItem>
+                    <MenuItem value={3}>administrator</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
             </Grid>
             <Button
