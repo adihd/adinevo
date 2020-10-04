@@ -14,7 +14,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import * as io from "socket.io-client";
 import { useHistory } from "react-router-dom";
-
 var socket;
 socket = io("http://localhost:5000");
 
@@ -42,20 +41,21 @@ export default function LoginPage() {
   const history = useHistory();
   const classes = useStyles();
   const [state, setState] = useState({ username: "", password: "" });
-  useEffect(() => {
-    getLogin();
-  });
 
   socket.on("login_response", (reply) => {
     // from json to js (???):
     if (reply.success) {
+      // getting all the data from nevo and sending it elsewere!
+      // moving to a difrent page:
       history.push("/");
     } else {
       console.log(reply.msg);
     }
   });
 
-  const setLogin = (username1, password1) => {
+  const onSubmitFunc = (e) => {
+    e.preventDefault();
+    const { username1, password1 } = state;
     socket.emit("login_attempt", {
       username: username1,
       password: password1,
@@ -64,13 +64,6 @@ export default function LoginPage() {
 
   const onInputChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
-  };
-
-  const onSubmitFunc = (e) => {
-    e.preventDefault();
-    const { username, password } = state;
-    setLogin(username, password);
-    // if log in:
   };
 
   return (
