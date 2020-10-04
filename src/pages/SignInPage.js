@@ -14,45 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import * as io from "socket.io-client";
 import { useHistory } from "react-router-dom";
-var socket;
-socket = io("http://localhost:5000");
+import { getLogin, setLogin } from "./Api";
 
-socket.on("login_response", (reply) => {
-  // from json to js (???):
-  if (reply.success) {
-    alert("adi is the best and the usr is loged in!");
-  } else {
-    console.log(reply.msg);
-  }
-});
-
-// async function handleSubmit(event) {
-//   event.preventDefault();
-
-//   try {
-//     await Auth.signIn(email, password);
-//     userHasAuthenticated(true);
-//     history.push("/");
-//   } catch (e) {
-//     alert(e.message);
-//   }
-// }
-// import * as io from "socket.io-client";
-// var socket;
-// socket = io("http://localhost:5000");
-
-// socket.on("login_response", (reply) => {
-//   // from json to js (???):
-//   if (reply.success) {
-//     alert("adi is the best and the usr is loged in!");
-//   } else {
-//     console.log(reply.msg);
-//   }
-// });
-
-// const clickLogin = () => {
-//   socket.emit("login_attempt", { username: "user_0", password: "7670" });
-// };
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -77,11 +40,8 @@ export default function LoginPage() {
   const history = useHistory();
   const classes = useStyles();
   const [state, setState] = useState({ username: "", password: "" });
-
   useEffect(() => {
-    socket.on("login", (msg) => {
-      console.log(msg);
-    });
+    getLogin();
   });
 
   const onInputChange = (e) => {
@@ -89,11 +49,10 @@ export default function LoginPage() {
   };
 
   const onSubmitFunc = (e) => {
-    // e.preventDefault();
-    // const { username, password } = state;
-    // socket.emit("login", { username, password });
     e.preventDefault();
-    console.log("adi");
+    const { username, password } = state;
+    setLogin(username, password);
+    // if log in:
     history.push("/");
   };
 
@@ -149,9 +108,6 @@ export default function LoginPage() {
         </form>
         <h1>{state.username}</h1>
       </div>
-      {/* <Box mt={8}>
-        <Copyright />
-      </Box> */}
     </Container>
   );
 }
