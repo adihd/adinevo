@@ -14,7 +14,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import * as io from "socket.io-client";
 import { useHistory } from "react-router-dom";
-import { getLogin, setLogin } from "./Api";
+
+var socket;
+socket = io("http://localhost:5000");
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,6 +46,22 @@ export default function LoginPage() {
     getLogin();
   });
 
+  socket.on("login_response", (reply) => {
+    // from json to js (???):
+    if (reply.success) {
+      history.push("/");
+    } else {
+      console.log(reply.msg);
+    }
+  });
+
+  const setLogin = (username1, password1) => {
+    socket.emit("login_attempt", {
+      username: username1,
+      password: password1,
+    });
+  };
+
   const onInputChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
@@ -53,7 +71,6 @@ export default function LoginPage() {
     const { username, password } = state;
     setLogin(username, password);
     // if log in:
-    history.push("/");
   };
 
   return (
