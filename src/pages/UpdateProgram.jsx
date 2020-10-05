@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const UpdateProgram = () => {
   const classes = useStyles();
+  counst []
   var templist = [];
   socket.on("get_list_of_commands", (reply) => {
     if (reply) {

@@ -42,7 +42,7 @@ export default function LoginPage() {
   const classes = useStyles();
   const [state, setState] = useState({ username: "", password: "" });
 
-  socket.on("login_response", (reply) => {
+  socket.on("list_of_commands_response", (reply) => {
     if (reply.success === "true") {
       // moving to a difrent page:
       alert(reply.message);
@@ -53,13 +53,10 @@ export default function LoginPage() {
     }
   });
 
+  socket.emit("get_list_of_commands");
   const onSubmitFunc = (e) => {
     e.preventDefault();
-    const { username, password } = state;
-    socket.emit("login_attempt", {
-      username: username,
-      password: password,
-    });
+    socket.emit("get_list_of_commands");
   };
 
   const onInputChange = (e) => {
