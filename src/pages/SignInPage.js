@@ -44,12 +44,15 @@ export default function LoginPage() {
 
   socket.on("login_response", (reply) => {
     // from json to js (???):
-    if (reply.success) {
+    if (reply.success === "true") {
       // getting all the data from nevo and sending it elsewere!
       // moving to a difrent page:
+      alert(reply.message);
+      // then:
       history.push("/");
     } else {
-      console.log(reply.msg);
+      // todo show the client the msg
+      alert(reply.message);
     }
   });
 
