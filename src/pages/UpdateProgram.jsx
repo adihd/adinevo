@@ -31,9 +31,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const UpdateProgram = () => {
   const classes = useStyles();
-  counst []
   var templist = [];
-  socket.on("get_list_of_commands", (reply) => {
+  socket.on("list_of_commands_response", (reply) => {
     if (reply) {
       // moving to a difrent page:
       templist = reply;
@@ -42,14 +41,12 @@ const UpdateProgram = () => {
     }
   });
 
-  const onSubmitFunc = (e) => {
-    e.preventDefault();
-    const { username, password } = state;
-    socket.emit("login_attempt", {
-      username: username,
-      password: password,
-    });
-  };
+  socket.emit("get_list_of_commands");
+  // const onSubmitFunc = (e) => {
+  //   e.preventDefault();
+  //   socket.emit("get_list_of_commands");
+  // };
+
   return (
     <div>
       <NavBar />
