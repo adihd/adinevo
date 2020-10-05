@@ -43,9 +43,7 @@ export default function LoginPage() {
   const [state, setState] = useState({ username: "", password: "" });
 
   socket.on("login_response", (reply) => {
-    // from json to js (???):
     if (reply.success === "true") {
-      // getting all the data from nevo and sending it elsewere!
       // moving to a difrent page:
       alert(reply.message);
       // then:
