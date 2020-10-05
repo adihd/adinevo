@@ -28,6 +28,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 const UpdateProgram = () => {
   const classes = useStyles();
+  var templist = [];
+  socket.on("get_list_of_commands", (reply) => {
+    if (reply) {
+      // moving to a difrent page:
+      templist = reply;
+    } else {
+      alert("error");
+    }
+  });
+
+  const onSubmitFunc = (e) => {
+    e.preventDefault();
+    const { username, password } = state;
+    socket.emit("login_attempt", {
+      username: username,
+      password: password,
+    });
+  };
   return (
     <div>
       <NavBar />
@@ -39,12 +57,7 @@ const UpdateProgram = () => {
           </Typography>
           <form className={classes.form} noValidate>
             <br />
-            <Auto
-              options={optionsCommand}
-              lable="command"
-              id="command"
-              fullWidth
-            />
+            <Auto options={templist} lable="command" id="command" fullWidth />
             <br />
             <Auto
               options={optionsController}
