@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Auto from "../components/Auto";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -34,13 +34,11 @@ const UpdateProgram = () => {
   var templist = [];
   socket.on("list_of_commands_response", (reply) => {
     if (reply) {
-      // moving to a difrent page:
       templist = reply;
     } else {
       alert("error");
     }
   });
-
   socket.emit("get_list_of_commands");
   // const onSubmitFunc = (e) => {
   //   e.preventDefault();
